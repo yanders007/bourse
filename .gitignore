@@ -1,0 +1,33 @@
+# Environment files
+.env
+.env.*
+!.env.example
+*.env
+
+# Laravel
+backend/vendor/
+backend/node_modules/
+backend/storage/logs/
+backend/storage/framework/
+backend/storage/*.key
+backend/bootstrap/cache/
+
+# Frontend (ignoré totalement, y compris son sous-dépôt)
+frontend/
+frontend/*
+frontend/**
+!/frontend/**/
+
+# Scraper
+scraper/node_modules/
+scraper/storage/key_value_stores
+scraper/storage/request_queues
+scraper/data/
+scraper/.crawlee/
+
+# IDE & OS
+.vscode/
+.idea/
+*.log
+.DS_Store
+Thumbs.db
