@@ -1,0 +1,25 @@
+services:
+  backend:
+    image: ghcr.io/jerrytchetangni5-commits/next/next-api:latest
+    container_name: next-backend
+    restart: unless-stopped
+    ports:
+      - "8011:80"
+    volumes:
+      - ./backend/storage:/var/www/html/storage
+    depends_on:
+      - db
+    env_file:
+      - ./backend/.env
+  db:
+    image: postgres:18-alpine
+    container_name: next-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: next_prod
+      POSTGRES_USER: next_user
+      POSTGRES_PASSWORD: crqkv9oC8QZTsEH6il3DhbeXxM7jwy42
+    volumes:
+      - dbdata:/var/lib/postgresql/data
+volumes:
+  dbdata:
