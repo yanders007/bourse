@@ -12,11 +12,12 @@ backend/storage/framework/
 backend/storage/*.key
 backend/bootstrap/cache/
 
-# Frontend (ignoré totalement, y compris son sous-dépôt)
-frontend/
-frontend/*
-frontend/**
-!/frontend/**/
+# Frontend
+frontend/node_modules/
+frontend/.next/
+frontend/out/
+frontend/.env.local
+frontend/.env*.local
 
 # Scraper
 scraper/node_modules/

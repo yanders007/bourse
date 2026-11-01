@@ -17,7 +17,9 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([  //Exécute ces seeder dans l'ordre
             AdminSeeder::class,
-            CvTemplateSeeder::class
+            CvTemplateSeeder::class,
+            FeaturedScholarshipsSeeder::class,
+            ScholarshipSeeder::class
         ]);
     }
 }
