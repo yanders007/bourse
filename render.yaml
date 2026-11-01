@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: scholarship-backend
+    env: python
+    buildCommand: cd backend && composer install --no-dev && php artisan migrate --force
+    startCommand: php -S 0.0.0.0:$PORT -t public
+    envVars:
+      APP_ENV: production
+      APP_KEY: "{{GENERATE_KEY}}"
+      DB_CONNECTION: pgsql
+      DB_HOST: {{RENDER_PG_HOST}}
+      DB_PORT: {{RENDER_PG_PORT}}
+      DB_DATABASE: {{RENDER_PG_DB}}
+      DB_USERNAME: {{RENDER_PG_USER}}
+      DB_PASSWORD: {{RENDER_PG_PASS}}
+    healthCheckPath: /api/health
+    autoDeploy: true
