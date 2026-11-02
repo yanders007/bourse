@@ -6,12 +6,12 @@ services:
     startCommand: php -S 0.0.0.0:$PORT -t public
     envVars:
       APP_ENV: production
-      APP_KEY: "{{GENERATE_KEY}}"
+      APP_KEY: "base64:aGqV+p5zW2mpwT6Jkw0WMDxa3w2PC503WSUk0Tu0b2Q="
       DB_CONNECTION: pgsql
-      DB_HOST: {{RENDER_PG_HOST}}
-      DB_PORT: {{RENDER_PG_PORT}}
-      DB_DATABASE: {{RENDER_PG_DB}}
-      DB_USERNAME: {{RENDER_PG_USER}}
-      DB_PASSWORD: {{RENDER_PG_PASS}}
+      DB_HOST: localhost
+      DB_PORT: 5432
+      DB_DATABASE: postgres
+      DB_USERNAME: postgres
+      DB_PASSWORD: postgres
     healthCheckPath: /api/health
     autoDeploy: true
