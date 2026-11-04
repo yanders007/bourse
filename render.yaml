@@ -2,16 +2,12 @@ services:
   - type: web
     name: scholarship-backend
     env: python
-    buildCommand: cd backend && composer install --no-dev && php artisan migrate --force
+    buildCommand: cd backend && composer install --no-dev
     startCommand: php -S 0.0.0.0:$PORT -t public
     envVars:
       APP_ENV: production
       APP_KEY: "base64:aGqV+p5zW2mpwT6Jkw0WMDxa3w2PC503WSUk0Tu0b2Q="
-      DB_CONNECTION: pgsql
-      DB_HOST: localhost
-      DB_PORT: 5432
-      DB_DATABASE: postgres
-      DB_USERNAME: postgres
-      DB_PASSWORD: postgres
+      DB_CONNECTION: sqlite
+      DB_DATABASE: ":memory:"
     healthCheckPath: /api/health
     autoDeploy: true
