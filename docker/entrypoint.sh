@@ -3,26 +3,16 @@ set -e
 
 php artisan config:clear
 
-# attendre PostgreSQL
-
-php artisan migrate --force
-
-# seeders
+# -----------------------------------------------------------------
+# No DB migrations – using SQLite (in‑memory or file)
+# -----------------------------------------------------------------
+# php artisan migrate --force      # removed
+# php artisan migrate --force      # removed (second occurrence)
 
 php artisan config:cache
 php artisan route:cache
 
-# Skipping PostgreSQL readiness check – using SQLite (no DB server)
-# until pg_isready -h db -p 5432 -U next_user -d next_prod
-# do
-#     echo "Waiting for PostgreSQL..."
-#     sleep 2
-# done
-#
-# echo "PostgreSQL is ready."
-
-php artisan migrate --force
-
+# Seeders – work with SQLite
 php artisan db:seed --class=AdminSeeder --force || true
 php artisan db:seed --class=CvTemplateSeeder --force || true
 php artisan db:seed --class=ScholarshipSeeder --force || true
@@ -39,6 +29,5 @@ fi
 
 php artisan config:cache
 php artisan route:cache
-
 
 exec supervisord -c /etc/supervisord.conf
