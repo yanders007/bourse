@@ -12,13 +12,14 @@ php artisan migrate --force
 php artisan config:cache
 php artisan route:cache
 
-until pg_isready -h db -p 5432 -U next_user -d next_prod
-do
-    echo "Waiting for PostgreSQL..."
-    sleep 2
-done
-
-echo "PostgreSQL is ready."
+# Skipping PostgreSQL readiness check – using SQLite (no DB server)
+# until pg_isready -h db -p 5432 -U next_user -d next_prod
+# do
+#     echo "Waiting for PostgreSQL..."
+#     sleep 2
+# done
+#
+# echo "PostgreSQL is ready."
 
 php artisan migrate --force
 

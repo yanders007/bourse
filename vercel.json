@@ -1,0 +1,18 @@
+{
+  "services": {
+    "scholarship-backend": {
+      "root": ".",
+      "buildCommand": "cd backend && composer install --no-dev",
+      "entrypoint": "/entrypoint.sh"
+    }
+  },
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": {
+        "type": "service",
+        "service": "scholarship-backend"
+      }
+    }
+  ]
+}
