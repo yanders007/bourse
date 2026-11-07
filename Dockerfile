@@ -1,4 +1,4 @@
-﻿FROM php:8.3-fpm-alpine AS base
+FROM php:8.3-fpm-alpine AS base
 
 RUN apk add --no-cache \
     bash \
@@ -9,9 +9,10 @@ RUN apk add --no-cache \
     oniguruma-dev \
     nginx \
     supervisor \
-    postgresql-client
+    postgresql-client \
+    sqlite-dev
 
-RUN docker-php-ext-install pdo pdo_pgsql zip mbstring
+RUN docker-php-ext-install pdo pdo_pgsql pdo_sqlite zip mbstring
 
 RUN { \
     echo 'post_max_size = 20M'; \

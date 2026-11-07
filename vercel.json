@@ -3,15 +3,16 @@
     "scholarship-backend": {
       "root": ".",
       "buildCommand": "cd backend && composer install --no-dev",
-      "entrypoint": "/entrypoint.sh"
+      "entrypoint": "docker/entrypoint.sh"
     }
   },
   "rewrites": [
     {
-      "source": "/(.*)",
+      "source": "/api/(.*)",
       "destination": {
         "type": "service",
-        "service": "scholarship-backend"
+        "service": "scholarship-backend",
+        "path": "/$1"
       }
     }
   ]
