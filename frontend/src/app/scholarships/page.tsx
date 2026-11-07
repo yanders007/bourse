@@ -49,6 +49,7 @@ function ScholarshipsContent() {
           if (params.domain && s.domain && !s.domain.toLowerCase().includes(params.domain.toLowerCase())) return false;
           if (params.level && s.level && !s.level.toLowerCase().includes(params.level.toLowerCase())) return false;
           if (params.funding_type === 'full' && !s.funding_type?.toLowerCase().includes('full')) return false;
+          if (params.funding_type === 'partial' && !s.funding_type?.toLowerCase().includes('part')) return false;
           return true;
         });
         setScholarships(filtered);

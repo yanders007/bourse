@@ -89,49 +89,50 @@ class ScholarshipController extends Controller
     {
         $query = Scholarship::query();
         $this->applyActiveScope($query);
+        $like = $this->likeOperator();
 
         // Recherche par mot-clé global (titre, description, université)
         if ($request->filled('q')) {
             $keyword = trim($request->q);
-            $query->where(function ($q) use ($keyword) {
-                $q->where('title', 'ILIKE', "%{$keyword}%")
-                  ->orWhere('university', 'ILIKE', "%{$keyword}%")
-                  ->orWhere('description', 'ILIKE', "%{$keyword}%")
-                  ->orWhere('country', 'ILIKE', "%{$keyword}%")
-                  ->orWhere('domain', 'ILIKE', "%{$keyword}%");
+            $query->where(function ($q) use ($keyword, $like) {
+                $q->where('title', $like, "%{$keyword}%")
+                  ->orWhere('university', $like, "%{$keyword}%")
+                  ->orWhere('description', $like, "%{$keyword}%")
+                  ->orWhere('country', $like, "%{$keyword}%")
+                  ->orWhere('domain', $like, "%{$keyword}%");
             });
         }
 
         // Filtre par pays
         if ($request->filled('country')) {
-            $query->where('country', 'ILIKE', '%' . trim($request->country) . '%');
+            $query->where('country', $like, '%' . trim($request->country) . '%');
         }
 
         // Filtre par domaine / filière
         if ($request->filled('domain')) {
-            $query->where(function ($q) use ($request) {
-                $q->where('domain', 'ILIKE', '%' . trim($request->domain) . '%')
-                  ->orWhere('title', 'ILIKE', '%' . trim($request->domain) . '%');
+            $query->where(function ($q) use ($request, $like) {
+                $q->where('domain', $like, '%' . trim($request->domain) . '%')
+                  ->orWhere('title', $like, '%' . trim($request->domain) . '%');
             });
         }
 
         // Filtre par niveau d'études
         if ($request->filled('level')) {
-            $query->where('level', 'ILIKE', '%' . trim($request->level) . '%');
+            $query->where('level', $like, '%' . trim($request->level) . '%');
         }
 
         // Filtre par type de financement (ex: fully_funded)
         if ($request->filled('funding_type')) {
             $funding = trim($request->funding_type);
             if ($funding === 'full' || $funding === 'fully_funded') {
-                $query->where(function ($q) {
-                    $q->where('funding_type', 'ILIKE', '%full%')
-                      ->orWhere('funding_type', 'ILIKE', '%entièrement%');
+                $query->where(function ($q) use ($like) {
+                    $q->where('funding_type', $like, '%full%')
+                      ->orWhere('funding_type', $like, '%entièrement%');
                 });
             } elseif ($funding === 'partial') {
-                $query->where(function ($q) {
-                    $q->where('funding_type', 'ILIKE', '%partial%')
-                      ->orWhere('funding_type', 'ILIKE', '%partiel%');
+                $query->where(function ($q) use ($like) {
+                    $q->where('funding_type', $like, '%partial%')
+                      ->orWhere('funding_type', $like, '%partiel%');
                 });
             }
         }
@@ -189,8 +190,9 @@ class ScholarshipController extends Controller
         $perPage = (int) $request->input('per_page', 12);
         $query = Scholarship::query();
         $this->applyActiveScope($query);
+        $like = $this->likeOperator();
 
-        $query->where('country', 'ILIKE', '%' . trim($country) . '%')
+        $query->where('country', $like, '%' . trim($country) . '%')
               ->orderByRaw('CASE WHEN deadline IS NULL THEN 1 ELSE 0 END')
               ->orderBy('deadline', 'asc');
 
@@ -216,13 +218,14 @@ class ScholarshipController extends Controller
     {
         $query = Scholarship::query();
         $this->applyActiveScope($query);
+        $like = $this->likeOperator();
 
         $totalScholarships = (clone $query)->count();
         $totalCountries = (clone $query)->whereNotNull('country')->distinct('country')->count('country');
         $totalUniversities = (clone $query)->whereNotNull('university')->distinct('university')->count('university');
-        $fullyFundedCount = (clone $query)->where(function ($q) {
-            $q->where('funding_type', 'ILIKE', '%full%')
-              ->orWhere('funding_type', 'ILIKE', '%entièrement%');
+        $fullyFundedCount = (clone $query)->where(function ($q) use ($like) {
+            $q->where('funding_type', $like, '%full%')
+              ->orWhere('funding_type', $like, '%entièrement%');
         })->count();
 
         return response()->json([
@@ -234,6 +237,14 @@ class ScholarshipController extends Controller
                 'fully_funded' => $fullyFundedCount,
             ]
         ]);
+    }
+
+    /**
+     * Helper pour opérateur SQL LIKE insensible selon le driver
+     */
+    private function likeOperator(): string
+    {
+        return DB::connection()->getDriverName() === 'pgsql' ? 'ILIKE' : 'LIKE';
     }
 
     /**

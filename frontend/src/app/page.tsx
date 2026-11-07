@@ -74,6 +74,7 @@ export default function HomePage() {
           if (newFilters.domain && s.domain && !s.domain.toLowerCase().includes(newFilters.domain.toLowerCase())) return false;
           if (newFilters.level && s.level && !s.level.toLowerCase().includes(newFilters.level.toLowerCase())) return false;
           if (newFilters.funding_type === 'full' && !s.funding_type?.toLowerCase().includes('full')) return false;
+          if (newFilters.funding_type === 'partial' && !s.funding_type?.toLowerCase().includes('part')) return false;
           return true;
         });
         setScholarships(filtered);

@@ -86,25 +86,25 @@ class ScholarshipImporter
     {
         $deadline = $item['deadline'] ?? null;
 
-        if(empty($deadline)){
-            return true;
+        if (empty($deadline)) {
+            return false; // Garder les opportunités ouvertes ou en cours
         }
 
-        //on garde les bourses ouvertes
-        $special = ['rolling', 'open', 'ongoing', 'all year', 'varies', 'not specified'];
-        if(in_array(strtolower(trim($deadline)), $special)){
+        // On garde les bourses ouvertes
+        $special = ['rolling', 'open', 'ongoing', 'all year', 'varies', 'not specified', 'permanent', 'continu', 'toute l\'année'];
+        if (in_array(strtolower(trim($deadline)), $special)) {
             return false;
         }
 
         $parsed = $this->parseDate($deadline);
 
-        //on rejette les datte invalide
-        if (!$parsed){
-            return true;
+        // Si non parsé, on la conserve pour ne pas perdre d'opportunité
+        if (!$parsed) {
+            return false;
         }
 
-        //si la date est passé, on la rejette
-        return $parsed->isPast();
+        // Si la date est formellement passée
+        return $parsed->isPast() && $parsed->diffInDays(now()) > 2;
     }
 
     private function parseDate(?string $date): ?Carbon

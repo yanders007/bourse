@@ -16,6 +16,6 @@ Schedule::command('notify:deadlines')
 
 
 Schedule::command('scholarships:sync')
-    ->cron('0 3 */2 * *')  // Tous les 2 jours à 3h du matin
+    ->everySixHours()
     ->withoutOverlapping()
     ->runInBackground();
