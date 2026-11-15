@@ -95,84 +95,83 @@ export default function HomePage() {
     <div className="flex flex-col gap-16 pb-20">
       
       {/* =========================================================================
-          HERO SECTION
+          HERO SECTION - DESIGN PRESTIGE & HUMANISTE
          ========================================================================= */}
-      <section className="relative overflow-hidden pt-10 sm:pt-16 pb-12 bg-radial-[at_top_right] from-blue-100/40 via-white to-slate-50 dark:from-blue-950/20 dark:via-slate-950 dark:to-slate-950">
+      <section className="relative overflow-hidden pt-12 sm:pt-20 pb-16 bg-[#FAF9F6] border-b border-stone-200/80">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           
-          <div className="flex flex-col items-center text-center max-w-3xl mx-auto space-y-6">
+          <div className="flex flex-col items-center text-center max-w-4xl mx-auto space-y-6">
             
-            {/* Badge d'introduction */}
-            <div className="inline-flex items-center gap-2 rounded-full border border-blue-200/80 bg-blue-50/80 px-3.5 py-1 text-xs font-semibold text-blue-700 shadow-xs dark:border-blue-900/60 dark:bg-blue-950/60 dark:text-blue-300">
-              <Sparkles className="h-3.5 w-3.5 text-amber-500" />
-              <span>Votre tremplin vers les études supérieures internationales</span>
+            {/* Badge institutionnel d'authenticité */}
+            <div className="inline-flex items-center gap-2 rounded-full border border-amber-200/80 bg-amber-50/70 px-4 py-1.5 text-xs font-bold text-amber-900 shadow-2xs">
+              <ShieldCheck className="h-4 w-4 text-amber-700" />
+              <span>Programmes Universitaires & Gouvernementaux Vérifiés</span>
             </div>
 
-            {/* Titre Principal */}
-            <h1 className="text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl lg:text-6xl dark:text-white leading-[1.15]">
-              Décrochez une bourse d'études{' '}
-              <span className="bg-gradient-to-r from-blue-600 via-indigo-600 to-sky-500 bg-clip-text text-transparent">
-                100% financée
-              </span>{' '}
-              partout dans le monde.
+            {/* Titre Principal Noble */}
+            <h1 className="text-4xl font-black tracking-tight text-slate-900 sm:text-5xl lg:text-6xl font-serif leading-[1.18]">
+              L'Excellence Académique Mondiale{' '}
+              <span className="text-blue-900 underline decoration-amber-400 decoration-4 underline-offset-8">
+                à votre portée
+              </span>.
             </h1>
 
-            {/* Description orientée étudiant africain */}
-            <p className="text-base sm:text-lg text-slate-600 dark:text-slate-300 max-w-2xl leading-relaxed">
-              Pensé pour accompagner chaque étudiant selon sa filière, son niveau actuel et ses aspirations. Accédez aux programmes phares (Mastercard, Eiffel, Chevening, DAAD, Erasmus) avec l'appui de notre IA.
+            {/* Description humaine & inspirante */}
+            <p className="text-base sm:text-lg text-stone-600 max-w-2xl leading-relaxed font-sans">
+              Découvrez des opportunités d'études complètes ou partielles (Mastercard, Eiffel, Chevening, DAAD, Erasmus, Suisse, Canada). Nous accompagnons chaque candidat avec rigueur pour bâtir un dossier d'admission irréprochable.
             </p>
 
-            {/* Boutons d'action rapides */}
-            <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
+            {/* Boutons d'action nobles */}
+            <div className="flex flex-wrap items-center justify-center gap-3.5 pt-2">
               <a
                 href="#catalogue"
-                className="inline-flex items-center gap-2 rounded-xl bg-blue-600 px-6 py-3 text-sm font-semibold text-white shadow-md shadow-blue-500/20 transition-all hover:bg-blue-700 hover:shadow-lg hover:shadow-blue-500/30 active:scale-95"
+                className="inline-flex items-center gap-2.5 rounded-xl bg-blue-950 px-7 py-3.5 text-sm font-bold text-white shadow-md shadow-blue-950/15 transition-all hover:bg-blue-900 hover:shadow-lg active:scale-95"
               >
-                <Search className="h-4 w-4" />
-                <span>Explorer les bourses</span>
+                <Compass className="h-4 w-4 text-amber-300" />
+                <span>Explorer les opportunités</span>
               </a>
 
               <Link
-                href="/ai-assistant"
-                className="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-6 py-3 text-sm font-semibold text-slate-800 shadow-xs transition-all hover:bg-slate-50 hover:border-slate-300 active:scale-95 dark:border-slate-800 dark:bg-slate-900 dark:text-white dark:hover:bg-slate-800"
+                href="/cv-builder"
+                className="inline-flex items-center gap-2 rounded-xl border border-stone-300 bg-white px-6 py-3.5 text-sm font-bold text-slate-800 shadow-2xs transition-all hover:bg-stone-50 hover:border-stone-400 active:scale-95"
               >
-                <Sparkles className="h-4 w-4 text-amber-500" />
-                <span>Orientation IA personnalisée</span>
+                <FileText className="h-4 w-4 text-blue-900" />
+                <span>Générateur de CV Académique</span>
               </Link>
             </div>
           </div>
 
           {/* =========================================================================
-              STATISTIQUES
+              STATISTIQUES DE CONFIANCE & D'IMPACT
              ========================================================================= */}
-          <div className="mt-14 grid grid-cols-2 gap-4 sm:grid-cols-4 lg:gap-6 max-w-4xl mx-auto">
+          <div className="mt-16 grid grid-cols-2 gap-4 sm:grid-cols-4 lg:gap-6 max-w-4xl mx-auto">
             
-            <div className="rounded-2xl border border-slate-200/80 bg-white/80 p-4 text-center shadow-xs backdrop-blur-sm dark:border-slate-800 dark:bg-slate-900/80">
-              <div className="text-2xl sm:text-3xl font-extrabold text-blue-600 dark:text-blue-400">
+            <div className="rounded-2xl border border-stone-200/90 bg-white p-5 text-center shadow-[0_2px_10px_-2px_rgba(0,0,0,0.03)]">
+              <div className="text-3xl font-extrabold text-blue-950 font-serif">
                 {stats.scholarships}+
               </div>
-              <p className="text-xs font-medium text-slate-500 dark:text-slate-400 mt-1">Bourses répertoriées</p>
+              <p className="text-xs font-bold uppercase tracking-wider text-stone-500 mt-1.5">Bourses Répertoriées</p>
             </div>
 
-            <div className="rounded-2xl border border-slate-200/80 bg-white/80 p-4 text-center shadow-xs backdrop-blur-sm dark:border-slate-800 dark:bg-slate-900/80">
-              <div className="text-2xl sm:text-3xl font-extrabold text-emerald-600 dark:text-emerald-400">
+            <div className="rounded-2xl border border-stone-200/90 bg-white p-5 text-center shadow-[0_2px_10px_-2px_rgba(0,0,0,0.03)]">
+              <div className="text-3xl font-extrabold text-emerald-800 font-serif">
                 {stats.fully_funded}+
               </div>
-              <p className="text-xs font-medium text-slate-500 dark:text-slate-400 mt-1">100% Prises en charge</p>
+              <p className="text-xs font-bold uppercase tracking-wider text-stone-500 mt-1.5">Financement Total</p>
             </div>
 
-            <div className="rounded-2xl border border-slate-200/80 bg-white/80 p-4 text-center shadow-xs backdrop-blur-sm dark:border-slate-800 dark:bg-slate-900/80">
-              <div className="text-2xl sm:text-3xl font-extrabold text-indigo-600 dark:text-indigo-400">
+            <div className="rounded-2xl border border-stone-200/90 bg-white p-5 text-center shadow-[0_2px_10px_-2px_rgba(0,0,0,0.03)]">
+              <div className="text-3xl font-extrabold text-blue-900 font-serif">
                 {stats.countries}+
               </div>
-              <p className="text-xs font-medium text-slate-500 dark:text-slate-400 mt-1">Pays de destination</p>
+              <p className="text-xs font-bold uppercase tracking-wider text-stone-500 mt-1.5">Pays Partenaires</p>
             </div>
 
-            <div className="rounded-2xl border border-slate-200/80 bg-white/80 p-4 text-center shadow-xs backdrop-blur-sm dark:border-slate-800 dark:bg-slate-900/80">
-              <div className="text-2xl sm:text-3xl font-extrabold text-amber-500 dark:text-amber-400">
+            <div className="rounded-2xl border border-stone-200/90 bg-white p-5 text-center shadow-[0_2px_10px_-2px_rgba(0,0,0,0.03)]">
+              <div className="text-3xl font-extrabold text-amber-700 font-serif">
                 100%
               </div>
-              <p className="text-xs font-medium text-slate-500 dark:text-slate-400 mt-1">Accès gratuit</p>
+              <p className="text-xs font-bold uppercase tracking-wider text-stone-500 mt-1.5">Gratuit & Indépendant</p>
             </div>
 
           </div>

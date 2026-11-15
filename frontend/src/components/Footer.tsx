@@ -6,23 +6,23 @@ import { GraduationCap, Heart, Globe, Shield, Sparkles, BookOpen } from 'lucide-
 
 export default function Footer() {
   return (
-    <footer className="border-t border-slate-200 bg-slate-50 text-slate-600 dark:border-slate-800 dark:bg-slate-900/60 dark:text-slate-400">
+    <footer className="border-t border-stone-200/90 bg-[#FAF9F6] text-stone-600">
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
           {/* Marque & Mission */}
           <div className="md:col-span-1 space-y-4">
-            <div className="flex items-center gap-2">
-              <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-blue-600 text-white">
+            <div className="flex items-center gap-2.5">
+              <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-blue-950 text-amber-300">
                 <GraduationCap className="h-5 w-5" />
               </div>
-              <span className="text-xl font-bold tracking-tight text-slate-900 dark:text-white">Next Bourse</span>
+              <span className="text-xl font-black tracking-tight text-slate-900 font-serif">Next Bourse</span>
             </div>
-            <p className="text-xs leading-relaxed text-slate-500 dark:text-slate-400">
-              Plateforme dédiée à la réussite académique internationale des étudiants d'Afrique et du monde. Trouver des financements d'études 100% vérifiés et accessibles.
+            <p className="text-xs leading-relaxed text-stone-500">
+              Institution indépendante dédiée à l'accompagnement et à la réussite académique internationale. Opportunités mondiales vérifiées, guides d'admission et outils de candidature.
             </p>
-            <div className="flex items-center gap-2 text-xs font-semibold text-emerald-600 dark:text-emerald-400">
+            <div className="flex items-center gap-2 text-xs font-semibold text-emerald-800">
               <Shield className="h-4 w-4" />
-              <span>Bourses vérifiées et gratuites d'accès</span>
+              <span>Programmes officiels et accès libre</span>
             </div>
           </div>
 

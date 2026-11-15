@@ -89,15 +89,15 @@ function ScholarshipsContent() {
   };
 
   return (
-    <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8 space-y-8">
-      {/* En-tête */}
-      <div>
-        <h1 className="text-3xl font-extrabold text-slate-900 dark:text-white flex items-center gap-3">
-          <GraduationCap className="h-8 w-8 text-blue-600" />
+    <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8 space-y-8 bg-[#FAF9F6] min-h-screen">
+      {/* En-tête Prestigieux */}
+      <div className="border-b border-stone-200/90 pb-6">
+        <h1 className="text-3xl sm:text-4xl font-black text-slate-900 flex items-center gap-3 font-serif">
+          <GraduationCap className="h-9 w-9 text-blue-950" />
           <span>Annuaire Mondial des Bourses d'Études</span>
         </h1>
-        <p className="mt-2 text-xs sm:text-sm text-slate-600 dark:text-slate-400">
-          Explorez plus de 500 bourses vérifiées et ouvertes aux candidatures internationales.
+        <p className="mt-2 text-sm text-stone-600 font-sans">
+          Programmes d'excellence académique, financements intégraux et bourses partielles de mobilité internationale.
         </p>
       </div>
 
@@ -111,17 +111,17 @@ function ScholarshipsContent() {
       {/* Grille des résultats */}
       {loading ? (
         <div className="py-24 text-center">
-          <div className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-blue-600 border-r-transparent"></div>
-          <p className="mt-3 text-xs font-medium text-slate-500">Mise à jour des opportunités...</p>
+          <div className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-blue-950 border-r-transparent"></div>
+          <p className="mt-3 text-xs font-semibold text-stone-500">Mise à jour des opportunités académiques...</p>
         </div>
       ) : scholarships.length === 0 ? (
-        <div className="my-12 rounded-2xl border border-dashed border-slate-300 p-12 text-center dark:border-slate-800">
-          <Compass className="mx-auto h-12 w-12 text-slate-400" />
-          <h3 className="mt-4 text-sm font-bold text-slate-900 dark:text-white">Aucune bourse ne correspond à ces critères</h3>
-          <p className="mt-1 text-xs text-slate-500">Essayez d'élargir votre recherche ou de réinitialiser les filtres.</p>
+        <div className="my-12 rounded-2xl border border-dashed border-stone-300 p-12 text-center bg-white shadow-2xs">
+          <Compass className="mx-auto h-12 w-12 text-stone-400" />
+          <h3 className="mt-4 text-base font-bold text-slate-900 font-serif">Aucune opportunité ne correspond exactement à ces critères</h3>
+          <p className="mt-1 text-xs text-stone-500">Essayez d'élargir votre recherche géographique ou de réinitialiser les filtres.</p>
           <button
             onClick={handleReset}
-            className="mt-4 rounded-xl bg-blue-600 px-4 py-2 text-xs font-semibold text-white hover:bg-blue-700"
+            className="mt-5 rounded-xl bg-blue-950 px-5 py-2.5 text-xs font-bold text-white hover:bg-blue-900 transition-colors"
           >
             Réinitialiser les filtres
           </button>
