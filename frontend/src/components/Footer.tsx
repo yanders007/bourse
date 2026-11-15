@@ -6,21 +6,21 @@ import { GraduationCap, Heart, Globe, Shield, Sparkles, BookOpen } from 'lucide-
 
 export default function Footer() {
   return (
-    <footer className="border-t border-stone-200/90 bg-[#FAF9F6] text-stone-600">
+    <footer className="border-t border-stone-200/90 bg-[#FAF9F6] text-stone-600 dark:border-slate-800 dark:bg-[#090E1A] dark:text-slate-400 transition-colors">
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
           {/* Marque & Mission */}
           <div className="md:col-span-1 space-y-4">
             <div className="flex items-center gap-2.5">
-              <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-blue-950 text-amber-300">
+              <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-blue-950 text-amber-300 dark:bg-blue-600 dark:text-white">
                 <GraduationCap className="h-5 w-5" />
               </div>
-              <span className="text-xl font-black tracking-tight text-slate-900 font-serif">Next Bourse</span>
+              <span className="text-xl font-black tracking-tight text-slate-900 dark:text-white font-serif">Next Bourse</span>
             </div>
-            <p className="text-xs leading-relaxed text-stone-500">
+            <p className="text-xs leading-relaxed text-stone-500 dark:text-slate-400">
               Institution indépendante dédiée à l'accompagnement et à la réussite académique internationale. Opportunités mondiales vérifiées, guides d'admission et outils de candidature.
             </p>
-            <div className="flex items-center gap-2 text-xs font-semibold text-emerald-800">
+            <div className="flex items-center gap-2 text-xs font-semibold text-emerald-800 dark:text-emerald-400">
               <Shield className="h-4 w-4" />
               <span>Programmes officiels et accès libre</span>
             </div>

@@ -7,14 +7,16 @@ import {
   GraduationCap, 
   Briefcase, 
   Languages, 
-  Sparkles,
-  Plus,
-  Trash2,
-  CheckCircle2,
-  RotateCcw,
-  BookOpen,
-  Award,
-  Globe
+  Sparkles, 
+  Plus, 
+  Trash2, 
+  CheckCircle2, 
+  RotateCcw, 
+  BookOpen, 
+  Award, 
+  Globe,
+  Eye,
+  Edit3
 } from 'lucide-react';
 
 interface EducationItem {
@@ -117,6 +119,7 @@ export default function CVBuilderPage() {
   const [selectedTemplate, setSelectedTemplate] = useState('bleu-marine');
   const [cvData, setCvData] = useState<CVData>(DEFAULT_DATA);
   const [activeTab, setActiveTab] = useState<'profile' | 'education' | 'experience' | 'skills'>('profile');
+  const [mobileView, setMobileView] = useState<'editor' | 'preview'>('editor');
   const [newSkill, setNewSkill] = useState('');
 
   // Gestion des Formations
@@ -259,13 +262,43 @@ export default function CVBuilderPage() {
         </div>
       </div>
 
+      {/* Switcher vue Mobile / Tablette : Formulaire vs Aperçu */}
+      <div className="lg:hidden flex items-center rounded-xl bg-stone-200/80 p-1 dark:bg-slate-800 print:hidden">
+        <button
+          type="button"
+          onClick={() => setMobileView('editor')}
+          className={`flex-1 flex items-center justify-center gap-1.5 py-2.5 rounded-lg text-xs font-bold transition-all ${
+            mobileView === 'editor'
+              ? 'bg-white text-blue-950 shadow-xs dark:bg-slate-900 dark:text-white'
+              : 'text-stone-600 dark:text-slate-400'
+          }`}
+        >
+          <Edit3 className="h-4 w-4" />
+          <span>1. Remplir le CV</span>
+        </button>
+        <button
+          type="button"
+          onClick={() => setMobileView('preview')}
+          className={`flex-1 flex items-center justify-center gap-1.5 py-2.5 rounded-lg text-xs font-bold transition-all ${
+            mobileView === 'preview'
+              ? 'bg-blue-950 text-white shadow-xs dark:bg-blue-600 dark:text-white'
+              : 'text-stone-600 dark:text-slate-400'
+          }`}
+        >
+          <Eye className="h-4 w-4" />
+          <span>2. Aperçu du CV (A4)</span>
+        </button>
+      </div>
+
       {/* Grille : Formulaire à gauche / Aperçu à droite */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         
         {/* =========================================================================
             FORMULAIRE ÉDITEUR (5 colonnes)
            ========================================================================= */}
-        <div className="lg:col-span-5 space-y-4 rounded-2xl border border-slate-200 bg-white p-5 shadow-xs dark:border-slate-800 dark:bg-slate-900 print:hidden">
+        <div className={`lg:col-span-5 space-y-4 rounded-2xl border border-stone-200 bg-white p-4 sm:p-5 shadow-xs dark:border-slate-800 dark:bg-slate-900 print:hidden ${
+          mobileView === 'editor' ? 'block' : 'hidden lg:block'
+        }`}>
           
           {/* Onglets du formulaire */}
           <div className="grid grid-cols-4 gap-1 rounded-xl bg-slate-100 p-1 text-xs font-semibold dark:bg-slate-800">
@@ -658,7 +691,10 @@ export default function CVBuilderPage() {
         {/* =========================================================================
             RENDU DU CV - TEMPLATES DYNAMIQUES (7 colonnes)
            ========================================================================= */}
-        <div className="lg:col-span-7 bg-slate-100 p-2 sm:p-4 rounded-2xl dark:bg-slate-900/50 print:bg-white print:p-0 print:border-none">
+        <div className={`lg:col-span-7 bg-stone-100 p-2 sm:p-4 rounded-2xl dark:bg-slate-900/50 print:bg-white print:p-0 print:border-none ${
+          mobileView === 'preview' ? 'block' : 'hidden lg:block'
+        }`}>
+          <div className="overflow-x-auto w-full pb-4">
           
           {/* =======================================================================
               TEMPLATE 1 : BLEU MARINE ACADÉMIQUE
@@ -1181,6 +1217,7 @@ export default function CVBuilderPage() {
             </div>
           )}
 
+          </div>
         </div>
 
       </div>

@@ -16,16 +16,21 @@ import {
   Share2,
   Clock,
   BookOpen,
-  AlertCircle
+  AlertCircle,
+  Heart
 } from 'lucide-react';
 import { Scholarship } from '@/types';
 import { scholarshipApi } from '@/lib/api';
 import { FEATURED_SCHOLARSHIPS } from '@/lib/mockData';
 import ScholarshipCard from '@/components/ScholarshipCard';
+import { useFavorites } from '@/context/FavoritesContext';
+import { useToast } from '@/context/ToastContext';
 
 function ScholarshipDetailContent() {
   const params = useParams();
   const id = params?.id as string;
+  const { isFavorite, toggleFavorite } = useFavorites();
+  const { toast } = useToast();
 
   const [scholarship, setScholarship] = useState<Scholarship | null>(null);
   const [related, setRelated] = useState<Scholarship[]>([]);
@@ -140,6 +145,26 @@ function ScholarshipDetailContent() {
           </div>
 
           <div className="flex items-center gap-2">
+            <button
+              onClick={() => {
+                if (!scholarship) return;
+                const added = toggleFavorite(scholarship.id);
+                if (added) {
+                  toast('Bourse ajoutée à vos favoris !', 'success');
+                } else {
+                  toast('Bourse retirée de vos favoris', 'info');
+                }
+              }}
+              className={`inline-flex items-center gap-1.5 rounded-xl border px-3 py-1.5 text-xs font-semibold transition-all ${
+                scholarship && isFavorite(scholarship.id)
+                  ? 'border-rose-300 bg-rose-50 text-rose-700 dark:border-rose-800 dark:bg-rose-950/60 dark:text-rose-300'
+                  : 'border-slate-200 bg-slate-50 text-slate-700 hover:bg-slate-100 dark:border-slate-800 dark:bg-slate-800 dark:text-slate-200'
+              }`}
+            >
+              <Heart className={`h-3.5 w-3.5 ${scholarship && isFavorite(scholarship.id) ? 'fill-rose-500 text-rose-500' : ''}`} />
+              <span>{scholarship && isFavorite(scholarship.id) ? 'Enregistrée' : 'Sauvegarder'}</span>
+            </button>
+
             <button
               onClick={handleShare}
               className="inline-flex items-center gap-1.5 rounded-xl border border-slate-200 bg-slate-50 px-3 py-1.5 text-xs font-semibold text-slate-700 hover:bg-slate-100 dark:border-slate-800 dark:bg-slate-800 dark:text-slate-200"
