@@ -97,10 +97,6 @@ export default function Navbar() {
           {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
         </button>
       </div>
-        >
-          {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-        </button>
-      </div>
 
       {/* Menu mobile */}
       {mobileMenuOpen && (
